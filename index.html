@@ -776,6 +776,22 @@ function submitForm(){
   var e3=setErr('ff-phone','e-phone',!phoneOk);
   var e4=setErr('ff-type','e-type',selectedTypes.length===0);
   if(e1||e2||e3||e4)return;
+
+  // Send Lead to Node-RED WhatsApp Automation
+  const leadData = {
+    name: name,
+    email: email,
+    phone: phone,
+    insurance_type: selectedTypes.join(', '),
+    timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' })
+  };
+
+  fetch('https://rcl.thetripathi.com/insurance-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(leadData)
+  }).catch(err => console.error('Lead failed to sync:', err));
+
   document.getElementById('form-wrap').style.display='none';
   var sw=document.getElementById('success-wrap');sw.style.display='block';
   var firstName=name.split(' ')[0];
@@ -818,6 +834,22 @@ function submitPopupForm(){
   var e3=pSetErr('pf-phone','pe-phone',!phoneOk);
   var e4=pSetErr('pf-type','pe-type',!type);
   if(e1||e2||e3||e4)return;
+
+  // Send Lead to Node-RED WhatsApp Automation
+  const leadData = {
+    name: name,
+    email: email,
+    phone: phone,
+    insurance_type: type,
+    timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' })
+  };
+
+  fetch('https://rcl.thetripathi.com/insurance-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(leadData)
+  }).catch(err => console.error('Lead failed to sync:', err));
+
   closeFormPopup();
   document.getElementById('thankyou-popup').classList.add('open');
   document.body.style.overflow='hidden';
@@ -827,15 +859,6 @@ function submitPopupForm(){
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeFormPopup();closeThankyou();}});
 </script>
-</body>
-</html  .why-list{
-    list-style:none;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-  .why-list li{
-    display:flex;
     align-items:center;
     gap:14px;
     font-size:15px;

@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sushma Tripathi – Insurance Advisor</title>
+<title>Sushma Tripathi – Professional Insurance Advisor</title>
+<meta name="description" content="Professional insurance advisor specializing in life, health, motor, and business insurance. Get personalized coverage and expert consultation with Sushma Tripathi.">
+<meta name="keywords" content="Sushma Tripathi, Insurance Advisor, Life Insurance, Health Insurance, Business Insurance, Motor Insurance, India Insurance, Employee Insurance">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sushma.thetripathi.com/">
+<meta property="og:title" content="Sushma Tripathi – Professional Insurance Advisor">
+<meta property="og:description" content="Expert insurance advice for life, health, and business. Start your consultation today.">
+<meta property="og:image" content="https://sushma.thetripathi.com/sushma-tripathi-portrait.png">
+<!-- Google Analytics 4 -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BSXTRWHWJR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BSXTRWHWJR');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -849,6 +867,14 @@ function submitPopupForm(){
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(leadData)
   }).catch(err => console.error('Lead failed to sync:', err));
+  
+  if (typeof gtag === 'function') {
+    gtag('event', 'lead_form_submit', {
+      'event_category': 'form',
+      'event_label': type,
+      'value': 1
+    });
+  }
 
   closeFormPopup();
   document.getElementById('thankyou-popup').classList.add('open');
@@ -859,22 +885,33 @@ function submitPopupForm(){
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeFormPopup();closeThankyou();}});
 </script>
-    align-items:center;
-    gap:14px;
-    font-size:15px;
-    font-weight:400;
-    color:var(--black);
-    line-height:1.4;
-    font-family:'Inter',sans-serif;
-    padding:12px 0;
-    border-bottom:1px solid var(--gray-200);
-  }
-  .why-list li:last-child{border-bottom:none}
-  .why-icon{
-    width:30px;height:30px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-  }
-  .why-icon--check{background:rgba(22,163,74,0.12)}
-  .why-icon--cross{background:rgba(220,38,38,0.10)}
->
+<script>
+  // Track button clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    // Lead Form Buttons
+    document.querySelectorAll('.btn-started, .hero-cta button, #hero-submit').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'consultation_click', {
+            'event_category': 'conversion',
+            'event_label': btn.textContent.trim()
+          });
+        }
+      });
+    });
+    
+    // Service Tag Clicks
+    document.querySelectorAll('.domain-tag').forEach(function(tag) {
+      tag.addEventListener('click', function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'service_click', {
+            'event_category': 'engagement',
+            'event_label': tag.textContent.trim()
+          });
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

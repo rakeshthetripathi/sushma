@@ -1,0 +1,6 @@
+# Logs
+*.log
+sushma_server.log
+
+# OS files
+.DS_Store

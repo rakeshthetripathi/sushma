@@ -804,6 +804,18 @@ function submitForm(){
     timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' })
   };
 
+  // --- EMAIL NOTIFICATION (Web3Forms) ---
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: '3cb34389-f1e9-4cfe-ac93-3cab07a691a8', // <-- YOUR LIVE KEY
+      subject: 'New Consultation Lead: ' + name,
+      from_name: 'Insurance Advisor Site',
+      ...leadData
+    })
+  }).catch(err => console.error('Email failed to send:', err));
+
   fetch('https://rcl.thetripathi.com/insurance-lead', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -861,6 +873,18 @@ function submitPopupForm(){
     insurance_type: type,
     timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' })
   };
+
+  // --- EMAIL NOTIFICATION (Web3Forms) ---
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      access_key: 'YOUR_ACCESS_KEY_HERE', // <-- REPLACE WITH YOUR KEY
+      subject: 'New Consultation Lead (Popup): ' + name,
+      from_name: 'Insurance Advisor Site',
+      ...leadData
+    })
+  }).catch(err => console.error('Email failed to send:', err));
 
   fetch('https://rcl.thetripathi.com/insurance-lead', {
     method: 'POST',

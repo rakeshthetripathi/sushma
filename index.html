@@ -3,24 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sushma Tripathi – Professional Insurance Advisor</title>
-<meta name="description" content="Professional insurance advisor specializing in life, health, motor, and business insurance. Get personalized coverage and expert consultation with Sushma Tripathi.">
-<meta name="keywords" content="Sushma Tripathi, Insurance Advisor, Life Insurance, Health Insurance, Business Insurance, Motor Insurance, India Insurance, Employee Insurance">
-<!-- Open Graph / Facebook -->
+<title>Sushma Tripathi – Professional Insurance Advisor | Life, Health & Business</title>
+<meta name="description" content="Sushma Tripathi is a professional insurance advisor specializing in life, health, motor, and business insurance across India. Get personalized coverage and a free expert consultation.">
+<meta name="keywords" content="Sushma Tripathi, Insurance Advisor, Life Insurance, Health Insurance, Business Insurance, Motor Insurance, Employee Insurance, India Insurance Advisor, Free Consultation">
+<link rel="canonical" href="https://sushma.thetripathi.com/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sushma.thetripathi.com/">
-<meta property="og:title" content="Sushma Tripathi – Professional Insurance Advisor">
-<meta property="og:description" content="Expert insurance advice for life, health, and business. Start your consultation today.">
-<meta property="og:image" content="https://sushma.thetripathi.com/sushma-tripathi-portrait.png">
+<meta property="og:site_name" content="Sushma Tripathi – Insurance Advisor">
+<meta property="og:title" content="Sushma Tripathi – Professional Insurance Advisor | Life, Health & Business">
+<meta property="og:description" content="Get expert, personalized insurance advice for life, health, motor, and business. Free consultation with Sushma Tripathi — trusted insurance advisor across India.">
+<meta property="og:image" content="https://sushma.thetripathi.com/assets/img/sushma-tripathi-social.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sushma Tripathi – Professional Insurance Advisor">
+<meta property="og:locale" content="en_IN">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://sushma.thetripathi.com/">
+<meta name="twitter:title" content="Sushma Tripathi – Professional Insurance Advisor">
+<meta name="twitter:description" content="Expert insurance advice for life, health, motor, and business. Get a free consultation today.">
+<meta name="twitter:image" content="https://sushma.thetripathi.com/assets/img/sushma-tripathi-social.jpg">
+<meta name="twitter:image:alt" content="Sushma Tripathi – Professional Insurance Advisor">
+<!-- JSON-LD / Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sushma Tripathi",
+  "url": "https://sushma.thetripathi.com/",
+  "image": "https://sushma.thetripathi.com/assets/img/sushma-tripathi-social.jpg",
+  "jobTitle": "Professional Insurance Advisor",
+  "description": "Professional insurance advisor specializing in life, health, motor, and business insurance across India.",
+  "nationality": "Indian",
+  "knowsAbout": ["Life Insurance", "Health Insurance", "Motor Insurance", "Business Insurance", "Employee Insurance", "Travel Insurance", "Home Insurance"],
+  "sameAs": []
+}
+</script>
 <!-- Google Analytics 4 -->
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSXTRWHWJR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  gtag('config', 'G-BSXTRWHWJR');
+  gtag('config', 'G-BSXTRWHWJR', { debug_mode: true });
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -403,8 +431,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px
     Sushma Tripathi
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
-    <a href="#services-section" class="btn-services" onclick="smoothScroll(event,'services-section')">Services</a>
-    <button class="btn-started" onclick="openFormPopup()">Get Started</button>
+    <a href="#services-section" class="btn-services" onclick="gtag('event','nav_click',{event_category:'navigation',event_label:'Services'});smoothScroll(event,'services-section')">Services</a>
+    <button class="btn-started" onclick="gtag('event','hero_cta_click',{event_category:'engagement',event_label:'Get Started'});openFormPopup()">Get Started</button>
   </div>
 </nav>
 
@@ -665,7 +693,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px
   <div class="second-cta-inner">
     <h2>Still confused about which insurance is right for you?</h2>
     <p>Let&rsquo;s talk &mdash; 15 minutes is all it takes to find the right plan for your life, family, and budget.</p>
-    <button class="btn-cta-white" onclick="openFormPopup()">Get Free Consultation &rarr;</button>
+    <button class="btn-cta-white" onclick="gtag('event','hero_cta_click',{event_category:'engagement',event_label:'Get Free Consultation CTA'});openFormPopup()">Get Free Consultation &rarr;</button>
     <div class="cta-micro">
       <span>&#10003; No spam</span>
       <span>&#10003; Free advice</span>
@@ -908,6 +936,76 @@ function submitPopupForm(){
   document.getElementById('ty-body').textContent='I appreciate you reaching out. I will connect with you soon to assist with your '+type+' needs.';
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeFormPopup();closeThankyou();}});
+
+// Track popup open
+var _origOpenFormPopup = openFormPopup;
+openFormPopup = function() {
+  gtag('event', 'form_popup_open', { event_category: 'engagement', event_label: 'Consultation Form Opened' });
+  _origOpenFormPopup.apply(this, arguments);
+};
+
+// Track thank you popup view
+var _origCloseThankyou = closeThankyou;
+var _tyTracked = false;
+function trackThankyouView() {
+  if (!_tyTracked) {
+    _tyTracked = true;
+    gtag('event', 'thankyou_view', { event_category: 'conversion', event_label: 'Thank You Popup Shown' });
+  }
+}
+
+// Scroll depth tracking
+(function() {
+  var depthsFired = {};
+  var thresholds = [25, 50, 75, 100];
+  function getDepth() {
+    var s = window.scrollY || document.documentElement.scrollTop;
+    var d = document.documentElement.scrollHeight - window.innerHeight;
+    return d > 0 ? Math.round((s / d) * 100) : 0;
+  }
+  window.addEventListener('scroll', function() {
+    var depth = getDepth();
+    for (var i = 0; i < thresholds.length; i++) {
+      var t = thresholds[i];
+      if (depth >= t && !depthsFired[t]) {
+        depthsFired[t] = true;
+        gtag('event', 'scroll_depth', { event_category: 'engagement', event_label: t + '%', value: t });
+      }
+    }
+  }, { passive: true });
+})();
+
+// Section impression tracking
+(function() {
+  var sectionsFired = {};
+  var sectionMap = {
+    'hero-section': 'Hero',
+    'services-section': 'Services',
+  };
+  var allSections = document.querySelectorAll('.section-why, .section-testimonials, .section-second-cta');
+  allSections.forEach(function(el, i) {
+    var key = 'section-' + i;
+    sectionMap[key] = ['Why Sushma', 'Testimonials', 'Second CTA'][i] || ('Section ' + i);
+    el.setAttribute('data-track-id', key);
+  });
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id || entry.target.getAttribute('data-track-id');
+          if (id && sectionMap[id] && !sectionsFired[id]) {
+            sectionsFired[id] = true;
+            gtag('event', 'section_view', { event_category: 'engagement', event_label: sectionMap[id] });
+          }
+        }
+      });
+    }, { threshold: 0.2 });
+    Object.keys(sectionMap).forEach(function(id) {
+      var el = document.getElementById(id) || document.querySelector('[data-track-id="' + id + '"]');
+      if (el) obs.observe(el);
+    });
+  }
+})();
 </script>
 <script>
   // Track button clicks
